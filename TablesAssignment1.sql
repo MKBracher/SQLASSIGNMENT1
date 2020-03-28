@@ -24,25 +24,17 @@ DROP TABLE IF EXISTS majorMinor
 CREATE TABLE majorMinor (
 mCode char(8) PRIMARY KEY NOT NULL,
 name varchar(255), 
+mEither char(5) NOT NULL,
 credits smallint,
 conditions varChar(255));
 
 CREATE TABLE staff (
 staffID char(8) PRIMARY KEY NOT NULL,
+role char(255) NOT NULL,
 firstName varchar(255),
 lastName varchar(255),
 address varchar(255),
 contactNo varchar(20));
-
-CREATE TABLE academicStaff (
-staffID char(8) PRIMARY KEY NOT NULL
-foreign key references staff(staffID),
-academicPrivileges varchar(255));
-
-CREATE TABLE administrationStaff (
-staffID char(8) PRIMARY KEY NOT NULL
-foreign key references staff(staffID),
-adminPrivileges varchar(255));
 
 CREATE TABLE orgUnit (
 unitID char(8) PRIMARY KEY NOT NULL,
@@ -56,7 +48,7 @@ foreign key references orgUnit(unitID),
 subUnitID char(8) UNIQUE,
 subUnitName varchar(50));
 
-CREATE TABLE Contain (
+CREATE TABLE contain (
 staffID char(8) foreign key references staff(staffID),
 unitID char(8) foreign key references orgUnit(unitID),
 startDate date,
@@ -67,7 +59,7 @@ CREATE TABLE certification(
 certAchieved varchar(20) PRIMARY KEY NOT NULL,
 level char(4));
 
-CREATE TABLE Programme ( 
+CREATE TABLE programme ( 
 programmeCode char(8) PRIMARY KEY NOT NULL,
 name varchar(255) NOT NULL,
 creditsToComplete smallint,
@@ -117,7 +109,7 @@ country varchar(50));
 
 CREATE TABLE term(
 termID char(8) PRIMARY KEY NOT NULL,
-name varchar(20),
+semester smallint,
 year char(4));
 
 CREATE TABLE courseOffering(
@@ -142,7 +134,7 @@ offeringID char(8) foreign key references courseOffering(offeringID),
 time time,
 day date);
 
-CREATE TABLE Has(
+CREATE TABLE has(
 courseID char(8) foreign key references course(courseID),
 programmeCode char(8) foreign key references programme(programmeCode),
 type varchar (20));
