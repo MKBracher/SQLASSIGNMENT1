@@ -26,7 +26,7 @@ mCode char(8) PRIMARY KEY NOT NULL,
 name varchar(255), 
 mEither char(5) NOT NULL, 
 credits smallint,
-conditions varChar(255)
+conditions varChar(255),
 CHECK (mEither = 'Major' OR mEither = 'Minor'));
 
 CREATE TABLE staff (
