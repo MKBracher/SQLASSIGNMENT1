@@ -29,7 +29,8 @@ conditions varChar(255));
 
 CREATE TABLE staff (
 staffID char(8) PRIMARY KEY NOT NULL,
-name varchar(255),
+firstName varchar(255),
+lastName varchar(255),
 address varchar(255),
 contactNo varchar(20));
 
@@ -87,7 +88,8 @@ foreign key references Programme(programmeCode));
 
 CREATE TABLE student (
 studentID char(8) PRIMARY KEY NOT NULL,
-name varchar(255),
+firstName varchar(255),
+lastName varchar(255),
 address varchar(255),
 contactNumber varchar(20),
 enrollmentID char(8) 
