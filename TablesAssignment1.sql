@@ -57,15 +57,14 @@ endDate date,
 role varchar(50));
 
 CREATE TABLE certification(
-certAchieved varchar(50) PRIMARY KEY NOT NULL,
-level char(4));
+level char(4) PRIMARY KEY NOT NULL,
+certAchieved varchar(50));
 
 CREATE TABLE programme ( 
 programmeCode char(8) PRIMARY KEY NOT NULL,
 name varchar(255) NOT NULL,
 creditsToComplete smallint,
-level char(4),
-certAchieved varchar(20) foreign key references certification(certAchieved),
+level char(4) foreign key references certification(level),
 unitID char(8) foreign key references orgUnit(unitID),
 convenorStartDate date,
 convenorEndDate date, 
