@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS subUnit
 DROP TABLE IF EXISTS orgUnit
 DROP TABLE IF EXISTS administrationStaff
 DROP TABLE IF EXISTS academicStaff
-DROP TABLE IF EXISTS  staff
+DROP TABLE IF EXISTS staff
 DROP TABLE IF EXISTS majorMinor
 
 
@@ -24,9 +24,10 @@ DROP TABLE IF EXISTS majorMinor
 CREATE TABLE majorMinor (
 mCode char(8) PRIMARY KEY NOT NULL,
 name varchar(255), 
-mEither char(5) NOT NULL,
+mEither char(5) NOT NULL, 
 credits smallint,
-conditions varChar(255));
+conditions varChar(255)
+CHECK (mEither = 'Major' OR mEither = 'Minor'));
 
 CREATE TABLE staff (
 staffID char(8) PRIMARY KEY NOT NULL,
@@ -49,14 +50,14 @@ subUnitID char(8) UNIQUE,
 subUnitName varchar(50));
 
 CREATE TABLE contain (
-staffID char(8) foreign key references staff(staffID),
-unitID char(8) foreign key references orgUnit(unitID),
+staffID char(8) foreign key references staff(staffID) NOT NULL,
+unitID char(8) foreign key references orgUnit(unitID) NOT NULL,
 startDate date,
 endDate date,
 role varchar(50));
 
 CREATE TABLE certification(
-certAchieved varchar(20) PRIMARY KEY NOT NULL,
+certAchieved varchar(50) PRIMARY KEY NOT NULL,
 level char(4));
 
 CREATE TABLE programme ( 
@@ -102,7 +103,7 @@ campusID char(8) PRIMARY KEY NOT NULL,
 name varchar(20));
 
 CREATE TABLE physicalCampus(
-campusID char(8) PRIMARY KEY 
+campusID char(8) PRIMARY KEY NOT NULL
 foreign key references campus(campusID),
 suburb varchar(50),
 country varchar(50));
@@ -129,8 +130,8 @@ campusID char(8) foreign key references campus(campusID));
 
 
 CREATE TABLE possesses(
-facilityID char(8) foreign key references facility(facilityID),
-offeringID char(8) foreign key references courseOffering(offeringID),
+facilityID char(8) foreign key references facility(facilityID) NOT NULL,
+offeringID char(8) foreign key references courseOffering(offeringID) NOT NULL,
 time time,
 day date);
 
