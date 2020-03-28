@@ -37,14 +37,7 @@ lastName varchar(255),
 address varchar(255),
 contactNo varchar(20));
 
-CREATE TABLE staffConvenor (
-    staffID char(8) PRIMARY KEY NOT NULL
-    foreign key references staff(staffID), 
-    programmeCode char(8) foreign key references programme(programmeCode),
-    startDate date,
-    endDate date,
 
-)
 
 CREATE TABLE orgUnit (
 unitID char(8) PRIMARY KEY NOT NULL,
@@ -76,6 +69,13 @@ creditsToComplete smallint,
 level char(4) foreign key references certification(level),
 unitID char(8) foreign key references orgUnit(unitID),
 mCode char(8) foreign key references majorMinor(mCode));
+
+CREATE TABLE staffConvenor (
+    staffID char(8) PRIMARY KEY NOT NULL
+    foreign key references staff(staffID), 
+    programmeCode char(8) foreign key references programme(programmeCode),
+    startDate date,
+    endDate date);
 
 CREATE TABLE enrollment(
 enrollmentID char(8) PRIMARY KEY NOT NULL,
