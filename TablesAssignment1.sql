@@ -18,6 +18,7 @@ DROP TABLE IF EXISTS administrationStaff
 DROP TABLE IF EXISTS academicStaff
 DROP TABLE IF EXISTS staff
 DROP TABLE IF EXISTS majorMinor
+DROP TABLE IF EXISTS staffConvenor
 
 
 
