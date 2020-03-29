@@ -23,6 +23,7 @@ DROP TABLE IF EXISTS majorMinor
 
 
 
+
 CREATE TABLE majorMinor (
 mCode char(8) PRIMARY KEY NOT NULL,
 name varchar(255), 
@@ -49,7 +50,8 @@ contactNo varchar(20));
 
 CREATE TABLE subUnit (
 unitID char(8) PRIMARY KEY NOT NULL
-foreign key references orgUnit(unitID),
+foreign key references orgUnit(unitID)
+ON UPDATE CASCADE,
 subUnitID char(8) UNIQUE,
 subUnitName varchar(50));
 
@@ -68,14 +70,18 @@ CREATE TABLE programme (
 programmeCode char(8) PRIMARY KEY NOT NULL,
 name varchar(255) NOT NULL,
 creditsToComplete smallint,
-level char(4) foreign key references certification(level),
-unitID char(8) foreign key references orgUnit(unitID),
-mCode char(8) foreign key references majorMinor(mCode));
+level char(4) foreign key references certification(level)
+ON UPDATE CASCADE,
+unitID char(8) foreign key references orgUnit(unitID)
+ON UPDATE CASCADE,
+mCode char(8) foreign key references majorMinor(mCode)
+ON UPDATE CASCADE);
 
 CREATE TABLE staffConvenor (
     staffID char(8) PRIMARY KEY NOT NULL
     foreign key references staff(staffID), 
-    programmeCode char(8) foreign key references programme(programmeCode),
+    programmeCode char(8) foreign key references programme(programmeCode)
+	ON UPDATE CASCADE,
     startDate date,
     endDate date);
 
@@ -85,7 +91,8 @@ enrollDate date,
 completionDate date,
 status varchar(20),
 programmeCode char(8)
-foreign key references Programme(programmeCode));
+foreign key references Programme(programmeCode)
+ON UPDATE CASCADE);
 
 CREATE TABLE student (
 studentID char(8) PRIMARY KEY NOT NULL,
@@ -94,7 +101,8 @@ lastName varchar(255),
 address varchar(255),
 contactNumber varchar(20),
 enrollmentID char(8) 
-foreign key references enrollment(enrollmentID));
+foreign key references enrollment(enrollmentID)
+ON UPDATE CASCADE);
 
 CREATE TABLE course(
 courseID char(8) PRIMARY KEY NOT NULL,
@@ -104,7 +112,8 @@ description varchar(255));
 
 CREATE TABLE assumedKnowledge(
 courseID char(8) PRIMARY KEY foreign key references course(courseID),
-assumedID char(8) foreign key references course(courseID));
+assumedID char(8) foreign key references course(courseID)
+ON UPDATE CASCADE);
 
 CREATE TABLE campus(
 campusID char(8) PRIMARY KEY NOT NULL,
@@ -112,7 +121,8 @@ name varchar(20));
 
 CREATE TABLE physicalCampus(
 campusID char(8) PRIMARY KEY NOT NULL
-foreign key references campus(campusID),
+foreign key references campus(campusID)
+ON UPDATE CASCADE,
 suburb varchar(50),
 country varchar(50));
 
@@ -123,10 +133,14 @@ year char(4));
 
 CREATE TABLE courseOffering(
 offeringID char(8) PRIMARY KEY NOT NULL,
-courseID char(8) foreign key references course(courseID),
-staffID char(8) foreign key references staff(staffID),
-termID char(8) foreign key references term(termID),
-campusID char(8) foreign key references campus(campusID));
+courseID char(8) foreign key references course(courseID)
+ON UPDATE CASCADE,
+staffID char(8) foreign key references staff(staffID)
+ON UPDATE CASCADE,
+termID char(8) foreign key references term(termID)
+ON UPDATE CASCADE,
+campusID char(8) foreign key references campus(campusID)
+ON UPDATE CASCADE);
 
 CREATE TABLE facility(
 facilityID char(8) Primary Key NOT NULL,
@@ -134,7 +148,8 @@ roomNo smallint,
 buildingName varchar(50),
 capacity smallint,
 type varchar(20),
-campusID char(8) foreign key references campus(campusID));
+campusID char(8) foreign key references campus(campusID)
+ON UPDATE CASCADE);
 
 
 CREATE TABLE possesses(
@@ -144,8 +159,10 @@ time time,
 day date);
 
 CREATE TABLE has(
-courseID char(8) foreign key references course(courseID),
-programmeCode char(8) foreign key references programme(programmeCode),
+courseID char(8) foreign key references course(courseID)
+ON UPDATE CASCADE,
+programmeCode char(8) foreign key references programme(programmeCode)
+ON UPDATE CASCADE,
 type varchar (20));
 
 
