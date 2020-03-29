@@ -1,3 +1,4 @@
+--Dropping the tables to resfresh
 DROP TABLE IF EXISTS has
 DROP TABLE IF EXISTS possesses
 DROP TABLE IF EXISTS facility
@@ -22,7 +23,7 @@ DROP TABLE IF EXISTS majorMinor
 
 
 
-
+--majorMinor stores data concerning major and minor offerings
 CREATE TABLE majorMinor (
 mCode char(8) PRIMARY KEY NOT NULL,
 name varchar(255), 
@@ -31,6 +32,7 @@ credits smallint,
 conditions varChar(255),
 CHECK (mEither = 'Major' OR mEither = 'Minor'));
 
+--staff stores staff personal details
 CREATE TABLE staff (
 staffID char(8) PRIMARY KEY NOT NULL,
 role char(255) NOT NULL,
@@ -39,20 +41,21 @@ lastName varchar(255),
 address varchar(255),
 contactNo varchar(20));
 
-
-
+--orgUnit stores information about the various organisations (e.g. The School of Engineering)
 CREATE TABLE orgUnit (
 unitID char(8) PRIMARY KEY NOT NULL,
 name varchar(255),
 description varchar(255),
 contactNo varchar(20));
 
+--subUnit stores information about departments that exist inside orgUnits
 CREATE TABLE subUnit (
 unitID char(8) PRIMARY KEY NOT NULL
 foreign key references orgUnit(unitID),
 subUnitID char(8) UNIQUE,
 subUnitName varchar(50));
 
+--Organisations contan staff
 CREATE TABLE contain (
 staffID char(8) foreign key references staff(staffID) NOT NULL,
 unitID char(8) foreign key references orgUnit(unitID) NOT NULL,
@@ -60,10 +63,12 @@ startDate date,
 endDate date,
 role varchar(50));
 
+--certification stores information about the different levels of degrees
 CREATE TABLE certification(
 level char(4) PRIMARY KEY NOT NULL,
 certAchieved varchar(50));
 
+--programmes offered by the university
 CREATE TABLE programme ( 
 programmeCode char(8) PRIMARY KEY NOT NULL,
 name varchar(255) NOT NULL,
@@ -72,6 +77,7 @@ level char(4) foreign key references certification(level),
 unitID char(8) foreign key references orgUnit(unitID),
 mCode char(8) foreign key references majorMinor(mCode));
 
+--each programme has a staff member who convenes it
 CREATE TABLE staffConvenor (
     staffID char(8) PRIMARY KEY NOT NULL
     foreign key references staff(staffID), 
@@ -79,6 +85,7 @@ CREATE TABLE staffConvenor (
     startDate date,
     endDate date);
 
+--Stores students enrollment data
 CREATE TABLE enrollment(
 enrollmentID char(8) PRIMARY KEY NOT NULL,
 enrollDate date,
@@ -87,6 +94,7 @@ status varchar(20),
 programmeCode char(8)
 foreign key references Programme(programmeCode));
 
+--student stores students personal information
 CREATE TABLE student (
 studentID char(8) PRIMARY KEY NOT NULL,
 firstName varchar(255),
@@ -96,31 +104,37 @@ contactNumber varchar(20),
 enrollmentID char(8) 
 foreign key references enrollment(enrollmentID));
 
+--course holds data concerning each individual course
 CREATE TABLE course(
 courseID char(8) PRIMARY KEY NOT NULL,
 name varchar(255),
 credits smallint,
 description varchar(255));
 
+--assumedKnowledge holds data for courses that have prerequiste courses attached to them
 CREATE TABLE assumedKnowledge(
 courseID char(8) PRIMARY KEY foreign key references course(courseID),
 assumedID char(8) foreign key references course(courseID));
 
+--campus concerns both physical and online campuses
 CREATE TABLE campus(
 campusID char(8) PRIMARY KEY NOT NULL,
 name varchar(20));
 
+--extendeds the table to hold more information specific to physical campuses
 CREATE TABLE physicalCampus(
 campusID char(8) PRIMARY KEY NOT NULL
 foreign key references campus(campusID),
 suburb varchar(50),
 country varchar(50));
 
+--term stores the different semesters
 CREATE TABLE term(
 termID char(8) PRIMARY KEY NOT NULL,
 semester smallint,
 year char(4));
 
+--courseOffering stores data about when a course is offered in a semester
 CREATE TABLE courseOffering(
 offeringID char(8) PRIMARY KEY NOT NULL,
 courseID char(8) foreign key references course(courseID),
@@ -128,6 +142,7 @@ staffID char(8) foreign key references staff(staffID),
 termID char(8) foreign key references term(termID),
 campusID char(8) foreign key references campus(campusID));
 
+--Courses offered on physical campuses have facilities within them
 CREATE TABLE facility(
 facilityID char(8) Primary Key NOT NULL,
 roomNo smallint,
@@ -136,13 +151,14 @@ capacity smallint,
 type varchar(20),
 campusID char(8) foreign key references campus(campusID));
 
-
+--Physically offered courses have facilities they are taught in
 CREATE TABLE possesses(
 facilityID char(8) foreign key references facility(facilityID) NOT NULL,
 offeringID char(8) foreign key references courseOffering(offeringID) NOT NULL,
 time time,
 day date);
 
+--Stores the courses that are a part of a programme
 CREATE TABLE has(
 courseID char(8) foreign key references course(courseID),
 programmeCode char(8) foreign key references programme(programmeCode),
