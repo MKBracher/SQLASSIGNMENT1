@@ -23,12 +23,9 @@ DROP TABLE IF EXISTS majorMinor
 
 
 
-<<<<<<< HEAD
+
 --majorMinor stores data concerning major and minor offerings
-=======
 
-
->>>>>>> master
 CREATE TABLE majorMinor (
 mCode char(8) PRIMARY KEY NOT NULL,
 name varchar(255), 
