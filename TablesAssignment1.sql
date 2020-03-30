@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS term
 DROP TABLE IF EXISTS physicalCampus
 DROP TABLE IF EXISTS campus
 DROP TABLE IF EXISTS assumedKnowledge
+DROP TABLE IF EXISTS completed
 DROP TABLE IF EXISTS course
 DROP TABLE IF EXISTS student
 DROP TABLE IF EXISTS enrollment
@@ -113,18 +114,20 @@ enrollmentID char(8)
 foreign key references enrollment(enrollmentID)
 ON UPDATE CASCADE);
 
---completed stores courses that studetns have successfully completed
-CREATE TABLE completed(
-    studentID char(8) foreign key references student(studentID) NOT NULL,
-    courseID char(8) foreign key references enrollment(enrollmentID) NOT NULL,
-    grade char(2));
-
 --course holds data concerning each individual course
 CREATE TABLE course(
 courseID char(8) PRIMARY KEY NOT NULL,
 name varchar(255),
 credits smallint,
 description varchar(255));
+
+
+--completed stores courses that studetns have successfully completed
+CREATE TABLE completed(
+    studentID char(8) foreign key references student(studentID) NOT NULL,
+    courseID char(8) foreign key references course(courseID) NOT NULL,
+    grade char(2));
+
 
 --assumedKnowledge holds data for courses that have prerequiste courses attached to them
 CREATE TABLE assumedKnowledge(

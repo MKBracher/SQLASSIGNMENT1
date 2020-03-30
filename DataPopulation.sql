@@ -111,5 +111,10 @@ INSERT INTO student VALUES
 ('C0000002', 'Sarah', 'Moore', '1/107 Honer Boulevard', '0439917682', 'E0000002'),
 ('C0000003', 'Amy', 'Patrick', '4 Scarlett Street', '0411139265', 'E0000003');
 
+INSERT INTO completed VALUES
+('C0000001', 'MATH1002', '75'),
+('C0000001', 'MATH1110', '68'),
+('C0000002', 'BIOL1001', '88');
+
 
 
