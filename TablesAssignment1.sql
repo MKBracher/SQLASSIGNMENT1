@@ -113,6 +113,12 @@ enrollmentID char(8)
 foreign key references enrollment(enrollmentID)
 ON UPDATE CASCADE);
 
+--completed stores courses that studetns have successfully completed
+CREATE TABLE completed(
+    studentID char(8) foreign key references student(studentID) NOT NULL,
+    courseID char(8) foreign key references enrollment(enrollmentID) NOT NULL,
+    grade char(2));
+
 --course holds data concerning each individual course
 CREATE TABLE course(
 courseID char(8) PRIMARY KEY NOT NULL,
