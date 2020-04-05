@@ -25,22 +25,4 @@ END
 
 --Drops procedure to refresh
 DROP PROCEDURE IF EXISTS usp_RegisterForCourses
-
-
---
-DECLARE @courseOfferingListTableType courseOfferingListTableType
-
-INSERT INTO @courseOfferingListTableType VALUES ('CO000001')
-INSERT INTO @courseOfferingListTableType VALUES ('CO000002')
-INSERT INTO @courseOfferingListTableType VALUES ('CO000004')
-
-
-EXECUTE usp_RegisterForCourses 'C0000001', @courseOfferingListTableType
-
-
-SELECT * FROM enrolledIn
-
-
-DELETE FROM enrolledIn
-	
 	
