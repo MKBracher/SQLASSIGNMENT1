@@ -1,13 +1,15 @@
+--COMP3350
+--Assiggnment 1
+--Logan Gillard & Matthew Bracher
+
 --Dropping the tables to resfresh
 DROP TABLE IF EXISTS has
 DROP TABLE IF EXISTS possesses
 DROP TABLE IF EXISTS facility
 DROP TABLE IF EXISTS courseOffering
-DROP TABLE IF EXISTS term  
+DROP TABLE IF EXISTS term
 DROP TABLE IF EXISTS physicalCampus
 DROP TABLE IF EXISTS campus
-DROP TABLE IF EXISTS assumedKnowledge
-DROP TABLE IF EXISTS completed
 DROP TABLE IF EXISTS course
 DROP TABLE IF EXISTS student
 DROP TABLE IF EXISTS enrolledIn
@@ -18,8 +20,6 @@ DROP TABLE IF EXISTS certification
 DROP TABLE IF EXISTS contain
 DROP TABLE IF EXISTS subUnit
 DROP TABLE IF EXISTS orgUnit
-DROP TABLE IF EXISTS administrationStaff
-DROP TABLE IF EXISTS academicStaff
 DROP TABLE IF EXISTS staff
 DROP TABLE IF EXISTS majorMinor
 
@@ -27,7 +27,6 @@ DROP TABLE IF EXISTS majorMinor
 
 
 --majorMinor stores data concerning major and minor offerings
-
 CREATE TABLE majorMinor (
 mCode char(8) PRIMARY KEY NOT NULL,
 name varchar(255), 
