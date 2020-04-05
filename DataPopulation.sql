@@ -29,18 +29,12 @@ INSERT INTO contain VALUES
 
 
 INSERT INTO course VALUES
-('BIOL2001', 'Advanced Biology', '10', 'A practical approach to advanced biological research skills'),
-('MATH1110', 'Mathematics', '10', 'Advanced Mathematical functions'),
-('COMP3350', 'Advanced Database Design', '10', 'A practical approach to the design and implementation of databases'),
-('BIOL1001', 'Intro to Biology', '10', 'Introduction to biology'),
-('COMP1140', 'Database and Info Management', '10', 'Introduction to database design'),
-('MATH1002', 'Foundational Studies in Mathematics', '10', 'Introduction to Mathematics');
-
-
-INSERT INTO assumedKnowledge VALUES
-('BIOL2001', 'BIOL1001'),
-('COMP3350', 'COMP1140'),
-('MATH1110', 'MATH1002');
+('BIOL2001', 'Advanced Biology', '10', 'A practical approach to advanced biological research skills', 'BIOL1001'),
+('MATH1110', 'Mathematics', '10', 'Advanced Mathematical functions', 'MATH1002'),
+('COMP3350', 'Advanced Database Design', '10', 'A practical approach to the design and implementation of databases', 'COMP1140'),
+('BIOL1001', 'Intro to Biology', '10', 'Introduction to biology', NULL),
+('COMP1140', 'Database and Info Management', '10', 'Introduction to database design', NULL),
+('MATH1002', 'Foundational Studies in Mathematics', '10', 'Introduction to Mathematics', NULL);
 
 
 INSERT INTO campus VALUES
@@ -111,10 +105,7 @@ INSERT INTO student VALUES
 ('C0000002', 'Sarah', 'Moore', '1/107 Honer Boulevard', '0439917682', 'E0000002'),
 ('C0000003', 'Amy', 'Patrick', '4 Scarlett Street', '0411139265', 'E0000003');
 
-INSERT INTO courseEnrollment VALUES
-('C0000001', 'MATH1002', '75', 'Completed'),
-('C0000001', 'MATH1110', '68', 'Completed'),
-('C0000002', 'BIOL1001', '88', 'Completed');
+
 
 
 
