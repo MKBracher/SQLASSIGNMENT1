@@ -1,5 +1,4 @@
-
-
+--Creating type 'courseEnrollmentTableType'
 CREATE TYPE courseEnrollmentTableType AS TABLE
 (
 	studentID char(8),
@@ -8,10 +7,10 @@ CREATE TYPE courseEnrollmentTableType AS TABLE
 	completionStatus varchar(20)
 	)
 GO
-	
+--Drops the type
 DROP TYPE courseEnrollmentTableType
 
-
+--Creates the procedure 'usp_RegisterForCourses'
 CREATE PROCEDURE usp_RegisterForCourses
 @courseID courseEnrollmentTableType READONLY
 AS
@@ -20,17 +19,17 @@ BEGIN
 	SELECT * FROM @courseID
 	if @courseID 
 END
-
+--Drops the procedure
 DROP PROCEDURE usp_RegisterForCourses
 
 
-
+--Declares 'courseEnrollmentTableType'
 DECLARE @courseEnrollmentTableType courseEnrollmentTableType
 
 INSERT INTO @courseEnrollmentTableType VALUES ('C0000002', 'COMP1140', NULL, 'FAILED')
 INSERT INTO @courseEnrollmentTableType VALUES ('C0000003', 'COMP1140', '55', 'COMPLETED')
 
-
+--Excecutes stored procedure
 EXECUTE usp_RegisterForCourses @courseEnrollmentTableType
 
 SELECT * FROM courseEnrollment
@@ -39,7 +38,7 @@ courseID = 'MATH1002'
 
 
 
-
+--Creates procedure 'usp_deleteRegister'
 CREATE PROCEDURE usp_deleteRegister
 @courseID courseEnrollmentTableType READONLY
 AS
@@ -47,5 +46,5 @@ BEGIN
 	DELETE courseEnrollment
 	SELECT * FROM @courseID
 END
-
+--Drops the procedure
 DROP PROCEDURE usp_RegisterForCourses
