@@ -1,7 +1,8 @@
+--Drops type to refresh
 DROP TYPE IF EXISTS courseOfferingListTableType
 
 
-
+--Creates the type 'courseOfferingListTableType'
 CREATE TYPE courseOfferingListTableType AS TABLE
 (
 	offeringID char(8)
@@ -9,7 +10,7 @@ CREATE TYPE courseOfferingListTableType AS TABLE
 GO
 
 
-
+--Enrols a student in a course
 CREATE PROCEDURE usp_RegisterForCourses
 @studentNumber char(8),
 @courseOfferingList courseOfferingListTableType READONLY 
@@ -22,10 +23,11 @@ BEGIN
 
 END
 
+--Drops procedure to refresh
 DROP PROCEDURE IF EXISTS usp_RegisterForCourses
 
 
-
+--
 DECLARE @courseOfferingListTableType courseOfferingListTableType
 
 INSERT INTO @courseOfferingListTableType VALUES ('CO000001')
