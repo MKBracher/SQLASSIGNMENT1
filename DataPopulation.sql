@@ -36,6 +36,12 @@ INSERT INTO course VALUES
 ('COMP1140', 'Database and Info Management', '10', 'Introduction to database design', NULL),
 ('MATH1002', 'Foundational Studies in Mathematics', '10', 'Introduction to Mathematics', NULL);
 
+INSERT INTO enrolledIn VALUES
+('C0000001', 'CO000001', '75', 'Completed'),
+('C0000001', 'CO000002', '68', 'Completed'),
+('C0000002', 'CO000003', '88', 'Completed');
+
+
 
 INSERT INTO campus VALUES
 ('CAMP0001', 'Online'),
@@ -63,7 +69,8 @@ INSERT INTO courseOffering VALUES
 ('CO000001', 'BIOL2001', 'S0000002', 'TERM0004', 'CAMP0002'),
 ('CO000002', 'BIOL2001', 'S0000002', 'TERM0004', 'CAMP0003'),
 ('CO000003', 'MATH1110', 'S0000001', 'TERM0002', 'CAMP0001'),
-('CO000004', 'COMP3350', 'S0000003', 'TERM0003', 'CAMP0002');
+('CO000004', 'COMP3350', 'S0000003', 'TERM0003', 'CAMP0002'),
+('CO000005', 'COMP3350', 'S0000002', 'TERM0003', 'CAMP0002');
 
 
 INSERT INTO facility VALUES
